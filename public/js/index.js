@@ -1,0 +1,3 @@
+const openNav = ()=>{
+    document.getElementById("")
+}

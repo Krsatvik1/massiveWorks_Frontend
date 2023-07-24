@@ -1,0 +1,35 @@
+{
+  "name": "massiveworks_frontend",
+  "version": "1.0.0",
+  "description": "Frontend Website based on ejs for massive works",
+  "main": "app.js",
+  "scripts": {
+    "build": "npx tailwindcss -i src/css/tailwind.css -o public/css/index.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krsatvik1/massiveWorks_Frontend.git"
+  },
+  "keywords": [
+    "ejs",
+    "frontend",
+    "massive",
+    "works"
+  ],
+  "author": "pirata interactives",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Krsatvik1/massiveWorks_Frontend/issues"
+  },
+  "homepage": "https://github.com/Krsatvik1/massiveWorks_Frontend#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
