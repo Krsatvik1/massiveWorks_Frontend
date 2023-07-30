@@ -1,6 +1,91 @@
-<%- include('partials/header') %>
-<%- include('partials/nav') %>
-<header class="md:px-16 px-5 h-screen pt-[200px]">
-    <img src="public/img/MASSIVE_WORKS.svg" alt="Massive Work" class="h-full" />
+<%- include('partials/header') %> <%- include('partials/nav') %>
+<header class="snap-always snap-center md:px-16 px-5 h-screen md:pt-[200px]">
+  <img src="public/img/MASSIVE_WORKS.svg" alt="Massive Work" class="h-full" />
 </header>
+<description
+  class="snap-always snap-center md:px-16 px-5 content-center h-screen grid md:grid-cols-2 grid-cols-1"
+>
+  <p
+    class="font-instrument text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]"
+  >
+    Massive Works is A creative branding studio with a vision to create
+    groundbreaking design for our clients globally. With our years of industry
+    expertise, we help project a company’s ideals effectively to its audience in
+    a simple yet commanding way.
+  </p>
+  <div class="justify-self-end md:justify-self-center">
+    <img src="public/img/image-19.jpg" alt="" srcset="" />
+  </div>
+</description>
+<established class="text-center bg-white h-screen">
+  <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
+    <div class="relative h-full md:px-16 px-5 flex flex-col justify-center">
+      <div
+        id="borderTop"
+        class="absolute origin-top top-0 left-0 w-full h-1/2 bg-black overflow-hidden"
+      >
+        <p
+          id="estd"
+          class="z-[1] absolute bottom-16 md:bottom-64 w-full text-center text-base md:text-2xl mb-0 italic font-instrument text-white"
+        >
+          Estd.
+        </p>
+        <p
+          id="topHead"
+          class="z-[1] font-thunder absolute bottom-0 w-full text-center leading-[0px] text-white text-[125px] md:text-[31.25rem]"
+        >
+          2015
+        </p>
+      </div>
+      <div
+        id="borderBottom"
+        class="absolute origin-bottom bottom-0 left-0 w-full h-1/2 bg-black overflow-hidden"
+      >
+        <p
+          id="bottomHead"
+          class="z-[1] absolute top-0 w-full h-auto text-center font-thunder leading-[0px] text-white text-[125px] md:text-[31.25rem]"
+        >
+          2015
+        </p>
+      </div>
+    </div>
+  </div>
+</established>
+<quotes-white
+  class="md:px-16 text-5xl md:text-[8rem] lg:text-[12rem] leading-[85%] px-5 bg-white md:justify-between flex-col md:flex-row text-black min-h-screen flex py-40 md:py-80"
+>
+  <div
+    class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0"
+  >
+    <p
+      class="font-instrument text-4xl md:text-[6rem] leading-[85%] lg:text-[10rem] mb-2 md:mb-[34px]"
+    >
+      We
+    </p>
+    <p class="font-instrument italic mb-2 md:mb-[34px]">Reinvigorate</p>
+    <p class="font-instrument">Design.</p>
+  </div>
+  <div class="flex-shrink-0 text-right order-1 md:order-2">
+    <p class="font-instrument text-base md:text-2xl">what do we do?</p>
+  </div>
+</quotes-white>
+<quotes-black
+  class="md:px-16 text-5xl md:text-[8rem] lg:text-[12rem] leading-[85%] px-5 bg-black md:justify-between flex-col md:flex-row text-white min-h-screen flex py-40 md:py-80"
+>
+  <div
+    class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0"
+  >
+    <p
+      class="font-instrument text-4xl md:text-[6rem] leading-[85%] lg:text-[10rem] mb-2 md:mb-[34px]"
+    >
+      With
+    </p>
+    <p class="font-instrument italic mb-2 md:mb-[34px]">Robust</p>
+    <p class="font-instrument italic">Elegance.</p>
+  </div>
+  <div class="flex-shrink-0 text-right order-1 md:order-2">
+    <p class="font-instrument text-base md:text-2xl">how do we do it?</p>
+  </div>
+</quotes-black>
+
 <%- include('partials/footer')%>

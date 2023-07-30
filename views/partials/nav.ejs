@@ -1,5 +1,5 @@
 <nav
-  class="bg-black flex justify-between p-5 md:p-16 pb-0 fixed w-screen top-0"
+  class="z-20 flex justify-between p-5 md:p-16 pb-0 fixed w-screen top-0  mix-blend-difference"
 >
   <div class="z-20">
     <svg
@@ -44,7 +44,7 @@
     <a href="/about" class="text-white block">ABOUT</a>
     <a href="/contact" class="text-white block">CONTACT</a>
   </div>
-  <div class="md:hidden items-center flex cursor-pointer">
+  <div id="openNav" class="md:hidden items-center flex opacity-100 cursor-pointer transition-all duration-100 ease-in-out absolute right-5 top-8">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="37"
@@ -56,13 +56,15 @@
       <rect y="10" width="37" height="3" fill="white" />
     </svg>
   </div>
-  <div class="md:hidden items-center z-20 flex cursor-pointer">
+  <div id="closeNav" class="md:hidden items-center z-20 hidden opacity-0 transition-all duration-100 ease-in-out cursor-pointer absolute right-5 top-6">
     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
         <path d="M14.1422 12.0209L2.12131 0L0 2.12132L12.0209 14.1422L3.05176e-05 26.1631L2.12134 28.2844L14.1422 16.2635L26.1629 28.2843L28.2843 26.1629L16.2635 14.1422L28.2843 2.12146L26.163 0.000135422L14.1422 12.0209Z" fill="white"/>
         </svg>
   </div>
-  <div id="sideNav"
-    class="md:hidden font-instrument place-content-center fixed h-screen w-screen left-full  top-0 z-10 bg-black flex flex-col text-center gap-[49px]"
+  
+</nav>
+<div id="sideNav"
+    class="md:hidden z-10 mix-blend-normal font-instrument transition-all duration-100 ease-in-out place-content-center fixed h-screen w-screen left-full  top-0 bg-black flex flex-col text-center gap-[49px]"
   >
     <div>
       <a href="/work" class="text-white block">WORK</a>
@@ -74,4 +76,3 @@
       <a href="/contact" class="text-white block">CONTACT</a>
     </div>
   </div>
-</nav>
