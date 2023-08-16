@@ -24,20 +24,24 @@ window.addEventListener("resize", () => {
   openIcon.style = null;
   closeIcon.style = null;
 });
-// const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
-//   const { top, left, bottom, right } = el.getBoundingClientRect();
-//   const { innerHeight, innerWidth } = window;
-//   return partiallyVisible
-//     ? ((top > 0 && top < innerHeight) ||
-//         (bottom > 0 && bottom < innerHeight))
-//     : top >= 0 && bottom <= innerHeight;
-// };
-const el = document.querySelector("established");
+const nav = document.querySelector("nav");
+let lastScroll = 0;
+document.addEventListener("scroll", () => {
+  let { scrollTop } = document.documentElement;
+  if (scrollTop > lastScroll) {
+    nav.style.top = "-100%";
+  } else {
+    nav.style.top = "0";
+  }
+  lastScroll = scrollTop;
+});
+if (window.location.pathname == "/") {
+  const el = document.querySelector("established-a");
 let borderTop = document.getElementById("borderTop");
 let borderBottom = document.getElementById("borderBottom");
 let borderBottomHeight = borderBottom.getBoundingClientRect().height;
 document.addEventListener("scroll", () => {
-  document.querySelector("established > div").style.zIndex = null;
+  document.querySelector("established-a > div").style.zIndex = null;
   let topHead = document.getElementById("topHead");
   let bottomHead = document.getElementById("bottomHead");
   let { bottom, height } = el.getBoundingClientRect();
@@ -59,7 +63,7 @@ document.addEventListener("scroll", () => {
     borderBottom.style.transform = `scaleY(0)`;
     topHead.style.transform = `scaleY(1)`;
     bottomHead.style.transform = `scaleY(1)`;
-    document.querySelector("established > div").style.zIndex = "-1";
+    document.querySelector("established-a > div").style.zIndex = "-1";
   } else {
     document.body.style.background = "black";
     topHead.style.transform = `scaleY(1)`;
@@ -70,21 +74,8 @@ document.addEventListener("scroll", () => {
 });
 //target nav element and scroll it up when page is scrolling down and send it up and when page is scrolling up bring it down
 // Path: public\js\index.js
-const nav = document.querySelector("nav");
-let lastScroll = 0;
-document.addEventListener("scroll", () => {
-  let { scrollTop } = document.documentElement;
-  if (scrollTop > lastScroll) {
-    nav.style.top = "-100%";
-  } else {
-    nav.style.top = "0";
-  }
-  lastScroll = scrollTop;
-});
+
 const viewmore = document.querySelector("#viewmore");
-//write a block to check if viewmore is in visable in viewport
-//if it is visible then add a class to it
-// Path: public\js\index.js
 const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
   const { top, left, bottom, right } = el.getBoundingClientRect();
   const { innerHeight, innerWidth } = window;
@@ -124,3 +115,7 @@ document.addEventListener("scroll", () => {
     viewmore.querySelector("#viewChild2").style.transitionDuration = '1s';
   }
 });
+
+}
+
+
