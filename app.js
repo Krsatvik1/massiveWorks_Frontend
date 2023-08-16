@@ -66,6 +66,17 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 app.get('/about', (req, res) => {
+  //send a get request to the api on localhost:1337 with token in header
+  axios.get("http://localhost:1337/api/tests", {
+  headers: {
+      Authorization: `Bearer f84e6180d6f5f02ba6b83051bd2dcc485a90aef06e53427017460a34e0ea4f58eedac10c8963967b3d508c724a2ca21aa5aa83003dc51d325c4af777dacbf4d44f95fe95c32f39f475e1131a2e9e455bb526a9d5daeda823b5f582e616bdb40f07e4aa93e203922c0cb1e8d07e20facbdff2d422131406a6624b7f91820849d0`
+  }}).then((response) => {
+    console.log(response.data);
+  }).catch((error) => {
+    console.log(error);
+  })
+
+
   res.render('about');
 });
 app.get('/work', (req, res) => {
