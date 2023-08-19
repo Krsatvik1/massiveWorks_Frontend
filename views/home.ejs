@@ -1,163 +1,134 @@
-<%- include('partials/header') %> <%- include('partials/nav') %>
-<header
-  class="snap-normal flex md:block snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto h-screen md:pt-[180px]"
->
-  <img src="public/img/MASSIVE_WORKS.svg" alt="Massive Work" class="w-full" />
-</header>
-<description
-  class="snap-normal 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto h-screen snap-center md:px-0 px-5 content-center grid md:grid-cols-2 grid-cols-1"
->
-  <p
-    class="font-instrument text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]"
-  >
-    Massive Works is A creative branding studio with a vision to create
-    groundbreaking design for our clients globally. With our years of industry
-    expertise, we help project a company’s ideals effectively to its audience in
-    a simple yet commanding way.
-  </p>
-  <div class="justify-self-end md:justify-self-center">
-    <img src="public/img/image-19.jpg" alt="" srcset="" />
-  </div>
-</description>
-<established class="text-center snap-normal snap-center bg-white h-screen">
-  <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
-    <div class="relative h-full md:px-16 px-5 flex flex-col justify-center">
-      <div
-        id="borderTop"
-        class="absolute origin-top top-0 left-0 w-full h-1/2 bg-black overflow-hidden"
-      >
-        <p
-          id="estd"
-          class="z-[1] absolute bottom-16 md:bottom-64 w-full text-center text-base md:text-2xl mb-0 italic font-instrument text-white"
-        >
-          Estd.
-        </p>
-        <p
-          id="topHead"
-          class="z-[1] font-thunder absolute -bottom-2 md:-bottom-10 w-full text-center leading-[0px] text-white text-[125px] md:text-[31.25rem]"
-        >
-          2015
-        </p>
-      </div>
-      <div
-        id="borderBottom"
-        class="absolute origin-bottom bottom-0 left-0 w-full h-1/2 bg-black overflow-hidden"
-      >
-        <p
-          id="bottomHead"
-          class="z-[1] absolute top-2 md:top-10 w-full h-auto text-center font-thunder leading-[1px] text-white text-[125px] md:text-[31.25rem]"
-        >
-          2015
-        </p>
-      </div>
-    </div>
-  </div>
-</established>
-<div class="bg-white">
-  <quotes-white
-    class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-center snap-normal text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-white md:justify-between flex-col md:flex-row text-black min-h-screen flex py-40 md:py-80"
-  >
-    <div
-      class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0"
-    >
-      <p
-        class="font-instrument text-3xl md:text-[4rem] leading-[85%] lg:text-[8rem] mb-1 md:mb-[14px]"
-      >
-        We
+<%- include('partials/header',{head:data.data.attributes['SEO'],link:link,baseURL:baseURL,pageURL:pageURL}) %> <%- include('partials/nav') %>
+    <header
+      class="snap-normal flex md:block snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto h-screen md:pt-[180px]">
+      <img src="/public/img/MASSIVE_WORKS.svg" alt="Massive Work" class="w-full" />
+    </header>
+    <description-a
+      class="snap-normal 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto h-screen snap-center md:px-0 px-5 content-center grid md:grid-cols-2 grid-cols-1">
+      <p class="font-instrument text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]">
+        <%= data.data.attributes.HomePara1  %>
       </p>
-      <p class="font-instrument italic mb-1 md:mb-[14px]">Reinvigorate</p>
-      <p class="font-instrument">Design.</p>
+      <div class="justify-self-end md:justify-self-center">
+        <img src=<%=link%><%=data.data.attributes.HomeParaImg1.data.attributes.url%> alt="<%= data.data.attributes.HomeParaImg1.data.attributes.alternativeText %>" srcset="" />
+      </div>
+    </description-a>
+    <established-a class="text-center snap-normal snap-center bg-white h-screen">
+      <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
+        <div class="relative h-full md:px-16 px-5 flex flex-col justify-center">
+          <div id="borderTop" class="absolute origin-top top-0 left-0 w-full h-1/2 bg-black overflow-hidden">
+            <p id="estd"
+              class="z-[1] absolute bottom-16 md:bottom-64 w-full text-center text-base md:text-2xl mb-0 italic font-instrument text-white">
+              Estd.
+            </p>
+            <p id="topHead"
+              class="z-[1] font-thunder absolute -bottom-2 md:-bottom-10 w-full text-center leading-[0px] text-white text-[125px] md:text-[31.25rem]">
+              2015
+            </p>
+          </div>
+          <div id="borderBottom" class="absolute origin-bottom bottom-0 left-0 w-full h-1/2 bg-black overflow-hidden">
+            <p id="bottomHead"
+              class="z-[1] absolute top-2 md:top-10 w-full h-auto text-center font-thunder leading-[1px] text-white text-[125px] md:text-[31.25rem]">
+              2015
+            </p>
+          </div>
+        </div>
+      </div>
+    </established-a>
+    <div class="bg-white">
+      <quotes-white
+        class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-center snap-normal text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-white md:justify-between flex-col md:flex-row text-black min-h-screen flex py-40 md:py-80">
+        <div class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0">
+          <p class="font-instrument text-3xl md:text-[4rem] leading-[85%] lg:text-[8rem] mb-1 md:mb-[14px]">
+            We
+          </p>
+          <p class="font-instrument italic mb-1 md:mb-[14px]">Reinvigorate</p>
+          <p class="font-instrument">Design.</p>
+        </div>
+        <div class="flex-shrink-0 text-right order-1 md:order-2">
+          <p class="font-instrument text-base md:text-2xl">what do we do?</p>
+        </div>
+      </quotes-white>
     </div>
-    <div class="flex-shrink-0 text-right order-1 md:order-2">
-      <p class="font-instrument text-base md:text-2xl">what do we do?</p>
-    </div>
-  </quotes-white>
-</div>
-<quotes-black
-  class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-black md:justify-between flex-col md:flex-row text-white min-h-screen flex py-40 md:py-80"
->
-  <div
-    class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0"
-  >
-    <p
-      class="font-instrument text-4xl md:text-[6rem] leading-[85%] lg:text-[10rem] mb-1 md:mb-[14px]"
-    >
-      With
-    </p>
-    <p class="font-instrument italic mb-1 md:mb-[14px]">Robust</p>
-    <p class="font-instrument italic">Elegance.</p>
-  </div>
-  <div class="flex-shrink-0 text-right order-1 md:order-2">
-    <p class="font-instrument text-base md:text-2xl">how do we do it?</p>
-  </div>
-</quotes-black>
-<div class="bg-white">
-  <works
-    class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center text-5xl md:text-[8rem] lg:text-[12rem] leading-[85%] px-5 bg-white md:justify-between flex-col md:flex-col text-black min-h-screen flex py-40 md:py-80"
-  >
-    <div
-      class="flex flex-grow flex-wrap justify-between font-instrument md:mb-[14rem] mb-[12rem]"
-    >
-      <h3 class="md:text-7xl md:block hidden leading-[100%] text-base">
-        Take a look at our
-      </h3>
-      <p class="text-right md:text-2xl text-base md:w-auto w-full">
-        don't belive us?
-      </p>
-    </div>
-    <div class="font-thunder md:mb-[14rem] mb-[14rem]">
-      <h3
-        class="md:text-[6.875rem] font-instrument text-center md:hidden leading-[100%] mb-5 text-base"
-      >
-        Take a look at our
-      </h3>
-      <svg
-        class="w-full"
-        viewBox="0 0 1312 573"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0.385 8.49996H143.485L135.535 315.37H145.075L153.025 8.49996H245.245L253.195 315.37H262.735L254.785 8.49996H397.885L359.725 565H202.315V368.635H192.775V565H35.365L0.385 8.49996ZM397.165 147.625C397.165 51.43 448.84 0.54997 542.65 0.54997C638.05 0.54997 692.905 53.815 692.905 147.625V425.08C692.905 519.685 638.05 572.95 542.65 572.95C448.84 572.95 397.165 521.275 397.165 425.08V147.625ZM540.265 137.29V436.21C540.265 444.955 541.855 448.93 545.035 448.93C548.215 448.93 549.805 444.955 549.805 436.21V137.29C549.805 127.75 548.215 124.57 545.035 124.57C541.855 124.57 540.265 127.75 540.265 137.29ZM702.277 8.49996H848.557C943.162 8.49996 998.017 56.2 998.017 157.165V161.14C998.017 254.155 951.112 299.47 916.927 299.47V309.01C950.317 309.01 998.017 360.685 998.017 445.75V452.11C998.017 494.245 998.812 530.815 1005.97 565H862.867C855.712 530.02 854.917 493.45 854.917 450.52V378.97C854.917 367.84 854.917 366.25 846.967 366.25H845.377V565H702.277V8.49996ZM845.377 132.52V242.23H846.967C854.917 242.23 854.917 240.64 854.917 229.51V144.445C854.917 134.11 854.917 132.52 846.967 132.52H845.377ZM1150.49 8.49996V225.535H1160.03V8.49996H1311.08L1277.69 286.75L1311.08 565H1160.03V348.76H1150.49V565H1007.39V8.49996H1150.49Z"
-          fill="black"
-        />
-      </svg>
-    </div>
-  </works>
-  </div>
-  <work-single class="bg-white block px-5 md:px-0">
-    <div class="overflow-hidden h-[9rem] md:h-[26rem] relative">
-      <a href="#"
-        class="h-[9rem] bg-black md:h-[26rem] transition-all duration-1000 group hover:scale-125 flex justify-center bg-opacity-20"
-        style="
-          background: url('/public/img/bg-place.png');
-          background-repeat: no-repeat;
-          background-position: 50% 50%;
-          background-size: cover;
-        "
-      >
-        <p
-          class="block text-2xl md:text-5xl text-white/0 transition-all duration-1000 group-hover:text-white/100 self-center font-instrument group-hover:scale-75"
-        >
-          Click to view more
+    <quotes-black
+      class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-black md:justify-between flex-col md:flex-row text-white min-h-screen flex py-40 md:py-80">
+      <div class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0">
+        <p class="font-instrument text-4xl md:text-[6rem] leading-[85%] lg:text-[10rem] mb-1 md:mb-[14px]">
+          With
         </p>
+        <p class="font-instrument italic mb-1 md:mb-[14px]">Robust</p>
+        <p class="font-instrument italic">Elegance.</p>
+      </div>
+      <div class="flex-shrink-0 text-right order-1 md:order-2">
+        <p class="font-instrument text-base md:text-2xl">how do we do it?</p>
+      </div>
+    </quotes-black>
+    <work-title class="text-center snap-normal snap-center bg-white h-screen">
+      <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
+        <div class="relative h-full md:px-16 px-5 flex flex-col justify-center text-black">
+          <div id="borderTop-b" class="absolute pt-20 origin-top top-0 left-0 w-full h-1/2 bg-white overflow-hidden">
+            <div class="px-5 md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full flex flex-grow flex-wrap justify-between font-instrument md:mb-[14rem] mb-[12rem] mx-auto">
+              <h3 id="take1" class="md:text-7xl md:block hidden leading-[100%] text-base">
+                Take a look at our
+              </h3>
+              <p id="belive" class="text-right md:text-2xl text-base md:w-auto w-full">
+                don't belive us?
+              </p>
+            </div>
+            <h3 id="take2" class="md:text-[6.875rem] font-instrument text-center md:hidden leading-[100%] mb-5 text-base">
+              Take a look at our
+            </h3>
+            <p id="topHead-b"
+              class="z-[1] font-thunder absolute -bottom-2 md:-bottom-10 w-full text-center leading-[0px] text-black text-[125px] md:text-[31.25rem]">
+              WORK
+            </p>
+          </div>
+          <div id="borderBottom-b" class="absolute origin-bottom bottom-0 left-0 w-full h-1/2 bg-white overflow-hidden">
+            <p id="bottomHead-b"
+              class="z-[1] absolute top-2 md:top-10 w-full h-auto text-center font-thunder leading-[1px] text-black text-[125px] md:text-[31.25rem]">
+              WORK
+            </p>
+          </div>
+        </div>
+      </div>
+    </work-title>
+    <div class="bg-black py-10 pt-40  md:pt-80">
+      <% data.data.attributes.works.data.forEach((workData , key)=>{ %>
+      <work-single class=" block px-5  pb-6 md:px-0">
+        <div class="overflow-hidden h-[9rem] md:h-[26rem] relative">
+          <a href="/work/<%= data.data.attributes.works.data[key].attributes.slug %>"
+            class="h-[9rem] bg-black md:h-[26rem] transition-all duration-1000 group hover:scale-125 flex justify-center bg-opacity-20"
+            style="
+            background: url('<%=link%><%= data.data.attributes.works.data[key].attributes.DisplayHomeBanner.data.attributes.url %>');
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: cover;
+          " role="img" aria-label="<%= data.data.attributes.works.data[key].attributes.DisplayHomeBanner.data.attributes.alternativeText %>">
+          </a>
+        </div>
+        <div class="flex justify-between font-instrument text-white md:px-24 md:text-lg py-2.5">
+          <div>Redbus</div>
+          <div class="italic">Branding</div>
+          <div>2015</div>
+        </div>
+      </work-single>
+      <% }) %>
+    </div>
+    <div class="bg-white py-40 md:px-0 px-5">
+      <a id="viewmore" href="/work"
+        class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center flex group  justify-center">
+        <div id="viewChild1"
+          class="h-9 md:h-40 group-hover:-mr-5 flex md:mt-[0.15rem] place-content-center transition-all duration-1000">
+          <img class="block w-full" src="/public/img/VIEW.svg">
+        </div>
+        <div id="viewChild2"
+          class="w-0 flex md:mt-[0.15rem] place-content-center h-9 md:h-40 bg-black transition-all duration-1000 group-hover:px-6 group-hover:w-40">
+          <img class="block" src="/public/img/arrow.svg">
+        </div>
+        <div id="viewChild3"
+          class="h-9 md:h-[10.27rem] group-hover:-ml-5 flex place-content-center transition-all duration-1000"><img
+            class="block" src="/public/img/More.svg"></div>
       </a>
     </div>
-    <div
-      class="flex justify-between font-instrument text-black md:px-24 md:text-lg py-2.5"
-    >
-      <div>Redbus</div>
-      <div class="italic">Branding</div>
-      <div>2015</div>
-    </div>
-  </work-single>
-  <div class="bg-white py-40 md:px-0 px-5">
-    <a id="viewmore" href="/work" class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center flex group  justify-center">
-      <div id="viewChild1" class="h-11 md:h-40 group-hover:-mr-5 flex md:mt-[0.15rem] place-content-center transition-all duration-1000"><img class="block w-full" src="/public/img/VIEW.svg"></div>
-      <div id="viewChild2" class="w-0 flex md:mt-[0.15rem] place-content-center h-11 md:h-40 bg-black transition-all duration-1000 group-hover:px-6 group-hover:w-40"><img class="block" src="/public/img/arrow.svg"></div>
-      <div id="viewChild3" class="h-11 md:h-[10.27rem] group-hover:-ml-5 flex place-content-center transition-all duration-1000"><img class="block" src="/public/img/More.svg"></div>
-    </a>
-  </div>
 
-  <%- include('partials/footer')%>
-</div>
+    <%- include('partials/transation',{rescode:rescode,resmessage:resmessage}) %>
+    <%- include('partials/footer')%>
