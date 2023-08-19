@@ -1,0 +1,46 @@
+<%- include('partials/header',{head:data.attributes['SEO'],link:link,baseURL:baseURL,pageURL:pageURL}) %>
+    <%- include('partials/nav') %>
+        <header
+            class="snap-normal mb-20 flex flex-wrap content-center w-full snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto min-h-screen items-center md:pt-[180px] gap-20 md:gap-0">
+            <h1
+                class="font-thunder w-full text-[6rem] md:text-[9rem] lg:text-[15rem] 2xl:text-[19rem] leading-[75%] uppercase mt-10">
+                <%= data.attributes.ProjectName %>
+            </h1>
+            <div class="w-full md:w-1/2 text-white text-lg md:text-3xl">
+                <p class="font-instrument italic text-white text-base md:text-2xl w-3/4 md:w-1/2">
+                    <%= data.attributes.ProjectItalics %>
+                </p>
+            </div>
+            <div class="flex w-full md:w-1/2 font-instrument">
+                <p class="font-instrument text-white text-base md:text-2xl w-3/4 md:w-1/2 md:ml-auto">
+                    <%= data.attributes.ProjectDescription %>
+                </p>
+            </div>
+        </header>
+        <% data.attributes.Assets.forEach((asset,key)=>{ %>
+            <% if(data.attributes.Assets[key].__component=="work-assets.1-img-banner" ){ console.log(data)%>
+                <banner-work class=" bg-cover bg-center block" style="background-image: url('<%= link %><%= data.attributes.Assets[key].imageBanner.data.attributes.url %>');" role="img" aria-label="<%= data.attributes.Assets[key].imageBanner.data.attributes.alternativeText %>">
+                </banner-work>
+            <% }else if (data.attributes.Assets[key].__component=="work-assets.2-img-tile" ){ %>
+                <tile-work class="grid grid-cols-2 content-center w-full">
+                    <div href="/work/first-work" class="block aspect-square bg-cover bg-center" style="background-image: url('<%= link %><%= data.attributes.Assets[key].image1.data.attributes.url %>');" role="img" aria-label="<%= data.attributes.Assets[key].image1.data.attributes.alternativeText %>">
+                    </div>
+                    <div href="/work/first-work" class="block aspect-square bg-cover bg-center" style="background-image: url('<%= link %><%= data.attributes.Assets[key].image2.data.attributes.url %>');" role="img" aria-label="<%= data.attributes.Assets[key].image2.data.attributes.alternativeText %>">
+                        </div>
+                    </tile-work>
+                <% } else if (data.attributes.Assets[key].__component=="work-assets.1video-banner" ){ %>
+                    <banner-work class=" bg-cover bg-center block overflow-hidden">
+                        <video class="w-full h-full object-cover object-center" src="<%= link %><%= data.attributes.Assets[key].videoBanner.data.attributes.url %>"
+                            autoplay loop muted playsinline bind:duration bind:buffered bind:played
+                            bind:seekable bind:seeking bind:ended bind:currentTime bind:playbackRate
+                            bind:paused bind:volume bind:muted bind:videoWidth bind:videoHeight></video>
+                    </banner-work>    
+                <% } %>
+        <% }) %>
+                                <script>
+                                    document.querySelectorAll('banner-work').forEach((el) => {
+                                        el.style.height = `${document.querySelector('tile-work').getBoundingClientRect().height}px`
+                                    })
+                                </script>
+                                <%- include('partials/transation',{rescode:rescode,resmessage:resmessage}) %>
+                                    <%- include('partials/footer')%>

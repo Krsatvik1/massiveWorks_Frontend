@@ -1,3 +1,4 @@
+<script src="https://www.google.com/recaptcha/api.js?render=6LcoYqonAAAAAAdfk3SZwIQPMyJOLnSOh-587WLA"></script>
 <contact-us id="contact-us"
     class=" 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto flex flex-col justify-center bg-black py-40 md:px-0 px-5">
     <div class="w-full flex-grow snap-normal snap-center">
@@ -10,7 +11,7 @@
             <defs>
         </svg>
     </div>
-    <form class=" mt-40 snap-normal snap-center">
+    <form  method="post" action="/contact" id="contact-form" class=" mt-40 snap-normal snap-center">
         <div class="flex flex-wrap justify-between flex-col md:flex-row text-white font-instrument">
             <div class="md:w-2/5 w-full">
                 <div class="mb-5">
@@ -41,6 +42,22 @@
         </div>
     </form>
 </contact-us>
+<script>
+    grecaptcha.ready(() => {
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        
+        // Execute the reCAPTCHA and get the token
+        grecaptcha.execute('6LcoYqonAAAAAAdfk3SZwIQPMyJOLnSOh-587WLA', { action: 'contact' }).then(token => {
+            // Add the token to the form data
+            document.getElementById('contact-form').insertAdjacentHTML('beforeend', '<input type="hidden" name="recaptcha_token" value="' + token + '">');
+            
+            // Submit the form
+            this.submit();
+        });
+    });
+});
+</script>
 <footer class="bg-white font-instrument text-black">
     <div
         class="2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto flex flex-col justify-center  py-10 md:px-0 px-5">
@@ -100,7 +117,7 @@
         </div>
     </div>
 </footer>
-<script src="public/js/index.js"></script>
+<script src="/public/js/index.js"></script>
 </body>
 
 </html>

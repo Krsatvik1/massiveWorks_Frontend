@@ -1,0 +1,14 @@
+<% if (rescode>='200'){ %>
+<div id="flash" class="fixed transition-all duration-500 translate-y-0 bottom-0 left-0 w-screen font-instrument md:text-2xl p-8 text-center <% if (rescode=='200') {%> bg-green-700 <% }else{ %> bg-red-700 <% } %>">
+    <%= resmessage %> <%= rescode %>
+</div>
+<script>
+    setTimeout(() => {
+        document.getElementById('flash').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('flash').style.display = 'none';    
+        }, 500);
+        
+    }, 3000);
+</script>
+<% } %>

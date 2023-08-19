@@ -1,90 +1,129 @@
 const express = require('express');
 const ejs = require('ejs');
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
-const passport = require("passport");
-const { connect, connection } = require("mongoose");
 const path = require("path");
-const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcryptjs");
-const User = require("./models/User"); // Assuming you have a User model defined
-const cors = require("cors");
-const axios = require("axios");
 const morgan = require("morgan");
 const app = express();
+const mail = require('./modules/email');
+const request = require('request');
+const session = require('express-session');
+const flash = require('connect-flash');
 // Load environment variables
 dotenv.config();
-require("./passport");
-app.use(cookieParser(process.env.JWT_SECRET));
 app.use(morgan("dev"));
-app.use(passport.initialize())
-
-
-//cors policy ----- edit before pushing to aws
-
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(flash());
 // Set view engine
 app.set('view engine', 'ejs');
 
-// Connect to MongoDB
-mongoose.set("strictQuery", false);
-console.log(process.env.MONGODB_URI);
-connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log("Database connected");
-  })
-  .catch((error) => {
-    console.error("Database connection error:", error);
-  });
-
-// Handle connection errors
-connection.on("error", (error) => {
-  console.error("Database connection error:", error);
-});
-
-// Handle disconnects
-connection.on("disconnected", () => {
-  console.log("Database disconnected");
-});
-
-// Handle app termination
-process.on("SIGINT", () => {
-  connection.close(() => {
-    console.log("Database connection closed due to app termination");
-    process.exit(0);
-  });
-});
 // Set up public folder
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/public', express.static('public'));
 
+
+async function getData(link, single = false) {
+  //This data will be sent to the server with the POST request.
+
+  const options = {
+    method: 'GET',
+    headers: { 'Authorization' : 'Bearer ' + process.env.STRAPI_KEY }
+  }
+  let url
+  if (single) {
+    url = process.env.STRAPI_URL + link +'&populate=deep';
+    try {
+      const response = await fetch(url, options)
+      const jsonResponse = await response.json();
+      console.log(jsonResponse.data[0]);
+      return jsonResponse.data[0];
+    } catch(err) {
+      console.log('ERROR', err);
+    }
+  }else{
+    url = process.env.STRAPI_URL + link +'?populate=deep';
+    try {
+      const response = await fetch(url, options)
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    } catch(err) {
+      console.log('ERROR', err);
+    }
+  }
+ 
+
+  
+}
+
+
+
 // Define app.get route for home page
 app.get('/', (req, res) => {
-  res.render('home');
+  getData("/home").then((data)=>{
+    res.render('home', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/'});
+  })
 });
 app.get('/about', (req, res) => {
-  //send a get request to the api on localhost:1337 with token in header
-  axios.get("http://localhost:1337/api/tests", {
-  headers: {
-      Authorization: `Bearer f84e6180d6f5f02ba6b83051bd2dcc485a90aef06e53427017460a34e0ea4f58eedac10c8963967b3d508c724a2ca21aa5aa83003dc51d325c4af777dacbf4d44f95fe95c32f39f475e1131a2e9e455bb526a9d5daeda823b5f582e616bdb40f07e4aa93e203922c0cb1e8d07e20facbdff2d422131406a6624b7f91820849d0`
-  }}).then((response) => {
-    console.log(response.data);
-  }).catch((error) => {
-    console.log(error);
+  //send a get request to the api on localhost:1337 with token in header with fetch
+  getData("/about").then((data)=>{
+    res.render('about', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/about'});
   })
-
-
-  res.render('about');
 });
 app.get('/work', (req, res) => {
-  res.render('work');
+  getData("/all-works-page").then((data)=>{
+    getData("/works").then((data2)=>{
+      res.render('work', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data,worksData:data2, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/work'});
+    })
+  })
 })
+app.get('/work/:slug', (req, res) => {
+  let strapiURLTO = '/works?filters[slug][$eq]='+req.params.slug
+  getData(strapiURLTO, single=true).then((data)=>{
+    console.log(data);
+    res.render('work-detail', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:"/work/"+req.params.slug});
+  })
+})
+app.post('/contact', (req, res) => {
 
-// Login route
-app.use("/auth",require("./routes/auth"));
+  let data = {name: req.body.name , email: req.body.email, query: req.body.query, phone: req.body.phone};
+  if(req.body.recaptcha_token === undefined || req.body.recaptcha_token === '' || req.body.recaptcha_token === null)
+    {
+            req.flash('resCode', '402');
+            req.flash('resMessage', 'Failed Captcha Verification Server Side Issue Please Contact Developer(Error code - 402)');
+            // await sleep(500);
+            res.redirect("back");
+    }
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    var g = req.body.recaptcha_token;
+    // console.log(req.body["g-recaptcha-response"]);
+    const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + g;
+  
+    request(verificationURL,function(error,response,body) {
+      body = JSON.parse(body);
+        console.log(body);
+      if(body.success == undefined || body.success== false || body.score < 0.5) {
+            req.flash('resCode', '403');
+            req.flash('resMessage', 'Failed Captcha Verification Please Retry.(Error code - 403)');
+            res.redirect("back");
+      
+      } else{
+        mail(data).catch(function(e){
+          console.log(e);
+            req.flash('resCode', '401');
+            req.flash('resMessage', 'SMTP Error contact Developer.(Error code - 401)');
+            res.redirect("back");
+        })
+        req.flash('resCode', '200');
+        req.flash('resMessage', 'Query Generated Successfully!!! Our Executive will contact you soon.');
+        res.redirect("back");
+      }
+    });
+})
 // Start the server
 const port = process.env.PORT;
 app.listen(port, () => {

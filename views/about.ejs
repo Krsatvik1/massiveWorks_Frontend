@@ -1,4 +1,4 @@
-<%- include('partials/header') %> <%- include('partials/nav') %>
+<%- include('partials/header',{head:data.data.attributes['SEO'],link:link,baseURL:baseURL,pageURL:pageURL}) %> <%- include('partials/nav') %>
         <header
             class="snap-normal flex md:block snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto h-screen md:pt-[180px]">
             <img src="/public/img/about-header.svg" alt="Massive Work" class="w-full hidden md:block" />
@@ -8,8 +8,7 @@
             class="snap-normal 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto h-screen snap-center md:px-0 px-5 content-center grid md:grid-cols-2 grid-cols-1">
             <p
                 class="font-instrument md:order-2 order-1 text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]">
-                Massive Works transforms brands into iconic identities that makes the world turn. We believe brands
-                should be more than pretty logos and screens and we make that difference possible.
+                <%= data.data.attributes.AboutPara1  %>
             </p>
             <div class="justify-self-end md:justify-self-center">
             </div>
@@ -39,18 +38,14 @@
         <founders-info
             class="snap-normal block snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto md:py-[90px] font-instrument ">
             <div class="grid grid-cols-2 gap-1 md:gap-4 w-full">
+                <% data.data.attributes.employees.data.forEach((empData , key)=>{ if(data.data.attributes.employees.data[key].attributes.IsFounder){%>
                 <div>
                     <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
+                        style="background-image: url('<%= link %><%= data.data.attributes.employees.data[key].attributes.ProfilePicture.data.attributes.url %>');" role="img" aria-label="<%= data.data.attributes.employees.data[key].attributes.ProfilePicture.data.attributes.alternativeText %>"></div>
+                    <h4 class="text-lg md:text-xl mt-4"><%= data.data.attributes.employees.data[key].attributes.Name %></h4>
+                    <h5 class="text-base md:text-lg italic leading-tight"><%= data.data.attributes.employees.data[key].attributes.Designation %></h5>
                 </div>
-                <div>
-                    <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
-                </div>
+                <% }}) %>
             </div>
         </founders-info>
         <our-values
@@ -60,9 +55,7 @@
             </h3>
             <p
                 class="font-instrument md:order-2 order-1 text-white mb-[34px] md:mb-0 text-base md:text-2xl w-2/3 md:w-1/3">
-                Our values are embedded into our DNA, not as a one time task but an ongoing commitment. They are clearly
-                defined, effectively communicated, and consistently reinforced to ensure make sure we stay true to
-                ourselves.
+                <%= data.data.attributes.AboutParaValues  %>
             </p>
         </our-values>
         <div class="bg-white text-black py-10 md:py-0">
@@ -76,14 +69,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="font-instrument text-base h-full md:text-2xl flex items-center w-2/3 md:w-1/2 mr-auto">
                         <p>
-                            Idealism recognizes the profound influence of ideas in shaping the world. We understand that
-                            transformative change begins with a vision and we translate that idea into the solutions we
-                            design for the world.
+                            <%= data.data.attributes.AboutParaIdealism  %>
                         </p>
                     </div>
                     <div>
-                        <img class="ml-auto md:mx-auto h-40 md:h-60 mt-5 md:mt-0" src="/public/img/fetyui-2.png"
-                            alt="" />
+                        <img class="ml-auto md:mx-auto h-40 md:h-60 mt-5 md:mt-0" src="<%= link %><%= data.data.attributes.AboutImgIdealism.data.attributes.url %>"
+                            alt="<%= data.data.attributes.AboutImgIdealism.data.attributes.alternativeText %>" />
                     </div>
                 </div>
             </idealism-a>
@@ -98,14 +89,12 @@
                     <div
                         class="font-instrument text-base md:order-2 h-full md:text-2xl flex items-center w-2/3 md:ml-auto">
                         <p>
-                            Being true and original with every step of our work is something we take very seriously here
-                            at Massive Works. From ideation to execution, we establish the truth that goes out in the
-                            world.
+                            <%= data.data.attributes.AboutParaAuthenticity  %>
                         </p>
                     </div>
                     <div>
-                        <img class="ml-auto md:mx-auto h-40 md:h-60 mt-5 md:mt-0" src="/public/img/fetyui-2.png"
-                            alt="" />
+                        <img class="ml-auto md:mx-auto h-40 md:h-60 mt-5 md:mt-0" src="<%= link %><%= data.data.attributes.AboutImgAuthenticity.data.attributes.url %>"
+                            alt="<%= data.data.attributes.AboutImgAuthenticity.data.attributes.alternativeText %>" />
                     </div>
                 </div>
             </authencity-a>
@@ -120,14 +109,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="font-instrument text-base h-full md:text-2xl flex items-center w-2/3 md:w-1/2 mr-auto">
                         <p>
-                            Idealism recognizes the profound influence of ideas in shaping the world. We understand that
-                            transformative change begins with a vision and we translate that idea into the solutions we
-                            design for the world.
+                            <%= data.data.attributes.AboutParaAudacity  %>
                         </p>
                     </div>
                     <div>
-                        <img class="ml-auto md:mx-auto h-40 md:h-60 mt-5 md:mt-0" src="/public/img/fetyui-2.png"
-                            alt="" />
+                        <img class="ml-auto md:mx-auto h-40 md:h-60 mt-5 md:mt-0" src="<%= link %><%= data.data.attributes.AboutImgAudacity.data.attributes.url %>"
+                            alt="<%= data.data.attributes.AboutImgAudacity.data.attributes.alternativeText %>" />
                     </div>
                 </div>
             </audacity-a>
@@ -139,41 +126,13 @@
             </h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-1 gap-y-4 md:gap-4 w-full font-instrument">
                 <div>
+                    <% data.data.attributes.employees.data.forEach((empData , key)=>{ if(!data.data.attributes.employees.data[key].attributes.IsFounder){%>
                     <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
+                        style="background-image: url('<%= link %><%= data.data.attributes.employees.data[key].attributes.ProfilePicture.data.attributes.url %>');"></div>
+                    <h4 class="text-lg md:text-xl mt-4"><%= data.data.attributes.employees.data[key].attributes.Name %></h4>
+                    <h5 class="text-base md:text-lg italic leading-tight"><%= data.data.attributes.employees.data[key].attributes.Designation %></h5>
                 </div>
-                <div>
-                    <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
-                </div>
-                <div>
-                    <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
-                </div>
-                <div>
-                    <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
-                </div>
-                <div>
-                    <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
-                </div>
-                <div>
-                    <div class="w-full aspect-square bg-cover bg-center"
-                        style="background-image: url('/public/img/image-20.png');"></div>
-                    <h4 class="text-lg md:text-xl mt-4">Isabel Leannon</h4>
-                    <h5 class="text-base md:text-lg italic leading-tight">Co-Founder & CEO</h5>
-                </div>
+                <% }}) %>
             </div>
         </our-team>
         <brand-we-shaped
@@ -206,4 +165,5 @@
                 Captivating Brilliance.
             </p>
         </brand-qoute>
+        <%- include('partials/transation',{rescode:rescode,resmessage:resmessage}) %>
         <%- include('partials/footer')%>
