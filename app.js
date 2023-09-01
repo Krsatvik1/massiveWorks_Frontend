@@ -40,7 +40,6 @@ async function getData(link, single = false) {
     try {
       const response = await fetch(url, options)
       const jsonResponse = await response.json();
-      console.log(jsonResponse.data[0]);
       return jsonResponse.data[0];
     } catch(err) {
       console.log('ERROR', err);
