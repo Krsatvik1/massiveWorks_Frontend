@@ -8,9 +8,6 @@
       <p class="font-instrument text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]">
         <%= data.data.attributes.HomePara1  %>
       </p>
-      <div class="justify-self-end md:justify-self-center">
-        <img src=<%=link%><%=data.data.attributes.HomeParaImg1.data.attributes.url%> alt="<%= data.data.attributes.HomeParaImg1.data.attributes.alternativeText %>" srcset="" />
-      </div>
     </description-a>
     <established-a class="text-center snap-normal snap-center bg-white h-screen">
       <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
@@ -106,9 +103,9 @@
           </a>
         </div>
         <div class="flex justify-between font-instrument text-white md:px-24 md:text-lg py-2.5">
-          <div>Redbus</div>
-          <div class="italic">Branding</div>
-          <div>2015</div>
+          <div><%= data.data.attributes.works.data[key].attributes.ClientName %></div>
+          <div class="italic"><%= data.data.attributes.works.data[key].attributes.TypeOfProject %></div>
+          <div><%= data.data.attributes.works.data[key].attributes.YearOfProject %></div>
         </div>
       </work-single>
       <% }) %>

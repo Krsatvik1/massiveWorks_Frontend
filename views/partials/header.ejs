@@ -12,6 +12,7 @@
     <% if (head['OpenGraphImage'].data) {%>
     <meta property="og:image" content="<%= link %><%= head['OpenGraphImage'].data.attributes.url %>" />
     <% } %>
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
     <meta property="og:url" content="<%= baseURL %><%= pageURL %>" />
     <meta property="og:type" content="<%= head['OpenGraphType'] %>" />
     <link rel="stylesheet" href="/public/css/index.css" />
