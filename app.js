@@ -36,7 +36,7 @@ async function getData(link, single = false) {
   }
   let url
   if (single) {
-    url = process.env.STRAPI_URL + link +'&populate=deep';
+    url = process.env.STRAPI_URL + link +'&populate=*';
     try {
       const response = await fetch(url, options)
       const jsonResponse = await response.json();
@@ -45,7 +45,7 @@ async function getData(link, single = false) {
       console.log('ERROR', err);
     }
   }else{
-    url = process.env.STRAPI_URL + link +'?populate=deep';
+    url = process.env.STRAPI_URL + link +'?populate=*';
     try {
       const response = await fetch(url, options)
       const jsonResponse = await response.json();
