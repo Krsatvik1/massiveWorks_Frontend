@@ -1,4 +1,4 @@
-<%- include('partials/header',{head:data.data.attributes['SEO'],link:link,baseURL:baseURL,pageURL:pageURL}) %> <%- include('partials/nav') %>
+<%- include('partials/header',{head:data.attributes['SEO'],link:link,baseURL:baseURL,pageURL:pageURL}) %> <%- include('partials/nav') %>
     <header
       class="snap-normal flex md:block snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto h-screen md:pt-[180px]">
       <img src="/public/img/MASSIVE_WORKS.svg" alt="Massive Work" class="w-full" />
@@ -6,7 +6,7 @@
     <description-a
       class="snap-normal 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto h-screen snap-center md:px-0 px-5 content-center grid md:grid-cols-2 grid-cols-1">
       <p class="font-instrument text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]">
-        <%= data.data.attributes.HomePara1  %>
+        <%= data.attributes.HomePara1  %>
       </p>
     </description-a>
     <established-a class="text-center snap-normal snap-center bg-white h-screen">
@@ -89,23 +89,23 @@
       </div>
     </work-title>
     <div class="bg-black py-10 pt-40  md:pt-80">
-      <% data.data.attributes.works.data.forEach((workData , key)=>{ %>
+      <% data.attributes.works.data.forEach((workData , key)=>{ %>
       <work-single class=" block px-5  pb-6 md:px-0">
         <div class="overflow-hidden h-[9rem] md:h-[26rem] relative">
-          <a href="/work/<%= data.data.attributes.works.data[key].attributes.slug %>"
+          <a href="/work/<%= data.attributes.works.data[key].attributes.slug %>"
             class="h-[9rem] bg-black md:h-[26rem] transition-all duration-1000 group hover:scale-125 flex justify-center bg-opacity-20"
             style="
-            background: url('<%=link%><%= data.data.attributes.works.data[key].attributes.DisplayHomeBanner.data.attributes.url %>');
+            background: url('<%=link%><%= data.attributes.works.data[key].attributes.DisplayHomeBanner.data.attributes.url %>');
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: cover;
-          " role="img" aria-label="<%= data.data.attributes.works.data[key].attributes.DisplayHomeBanner.data.attributes.alternativeText %>">
+          " role="img" aria-label="<%= data.attributes.works.data[key].attributes.DisplayHomeBanner.data.attributes.alternativeText %>">
           </a>
         </div>
         <div class="flex justify-between font-instrument text-white md:px-24 md:text-lg py-2.5">
-          <div><%= data.data.attributes.works.data[key].attributes.ClientName %></div>
-          <div class="italic"><%= data.data.attributes.works.data[key].attributes.TypeOfProject %></div>
-          <div><%= data.data.attributes.works.data[key].attributes.YearOfProject %></div>
+          <div><%= data.attributes.works.data[key].attributes.ClientName %></div>
+          <div class="italic"><%= data.attributes.works.data[key].attributes.TypeOfProject %></div>
+          <div><%= data.attributes.works.data[key].attributes.YearOfProject %></div>
         </div>
       </work-single>
       <% }) %>
