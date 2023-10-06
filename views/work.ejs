@@ -1,10 +1,10 @@
-<%- include('partials/header',{head:data.attributes['SEO'],link:link,baseURL:baseURL,pageURL:pageURL}) %>
+<%- include('partials/header',{head:data.attributes.SEO,link:link,baseURL:baseURL,pageURL:pageURL}) %>
     <%- include('partials/nav') %>
         <header
             class="snap-normal flex flex-wrap content-center w-full snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto min-h-screen items-center md:pt-[180px] gap-5">
             <h1 class="font-thunder w-full text-[7rem] md:text-[10rem] lg:text-[16rem] 2xl:text-[20rem] leading-[75%] uppercase mt-10">Our Impact is Massive</h1>
             <div class="flex font-instrument pt-3 md:mb-40">
-                <p class="font-instrument text-white text-base md:text-2xl w-3/4 md:w-2/3"><%= data.data.attributes.AllWorkPara %></p>
+                <p class="font-instrument text-white text-base md:text-2xl w-3/4 md:w-2/3"><%= data.attributes.AllWorkPara %></p>
             </div>
         </header>
         
