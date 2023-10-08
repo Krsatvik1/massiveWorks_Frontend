@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/public', express.static('public'));
 
 
-async function getData(link, single = false) {
+async function getData(link) {
   //This data will be sent to the server with the POST request.
 
   const options = {
@@ -35,57 +35,56 @@ async function getData(link, single = false) {
     headers: { 'Authorization' : 'Bearer ' + process.env.STRAPI_KEY }
   }
   let url
-  if (single) {
-    url = process.env.STRAPI_URL + link +'&populate=*';
+  
+    url = process.env.STRAPI_URL + link ;
     try {
       const response = await fetch(url, options)
       const jsonResponse = await response.json();
-      return jsonResponse.data[0];
-    } catch(err) {
-      console.log('ERROR', err);
-    }
-  }else{
-    url = process.env.STRAPI_URL + link +'?populate=*';
-    try {
-      const response = await fetch(url, options)
-      const jsonResponse = await response.json();
+      console.log("-----------------------------------------------------------")
+      console.log(jsonResponse)
       return jsonResponse;
     } catch(err) {
       console.log('ERROR', err);
     }
   }
- 
-
-  
-}
 
 
 
 // Define app.get route for home page
 app.get('/', (req, res) => {
-  getData("/home").then((data)=>{
-    res.render('home', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/'});
+  getData("home?populate=*").then((data)=>{
+    getData("home?populate[SEO][populate]=*").then((data2)=>{
+      getData("home?populate[works][populate]=*").then((data3)=>{
+        res.render('home', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data,seo:data2.data,works:data3.data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/'});
+      })
+    })
   })
 });
 app.get('/about', (req, res) => {
   //send a get request to the api on localhost:1337 with token in header with fetch
-  getData("/about").then((data)=>{
-    res.render('about', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/about'});
+  getData("about?populate=*").then((data)=>{
+    getData("about?populate[SEO][populate]=*").then((data2)=>{
+      getData("about?populate[employees][populate]=*").then((data3)=>{ 
+        res.render('about', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/about', seo:data2.data, employees:data3.data});
+      })})
+    
   })
 });
 app.get('/work', (req, res) => {
-  getData("/all-works-page").then((data)=>{
-    getData("/works").then((data2)=>{
-      res.render('work', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data,worksData:data2, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/work'});
+  getData("all-works-page?populate=*").then((data)=>{
+    getData("works?populate=*").then((data2)=>{
+      getData("all-works-page?populate[SEO][populate]=*").then((data3)=>{
+        res.render('work', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data ,worksData:data2, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/work', seo:data3.data});
+      })
     })
   })
 })
 app.get('/work/:slug', (req, res) => {
-  let strapiURLTO = '/works?filters[slug][$eq]='+req.params.slug
-  getData(strapiURLTO, single=true).then((data)=>{
-    console.log(data);
-    res.render('work-detail', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:"/work/"+req.params.slug});
-  })
+  let strapiURLTO = 'works?filters[slug][$eq]='+req.params.slug
+  getData(strapiURLTO+'&populate[Assets][populate]=*').then((data)=>{
+    getData(strapiURLTO+'&populate[SEO][populate]=*').then((data2)=>{
+    res.render('work-detail', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data[0], link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:"/work/"+req.params.slug, seo:data2.data[0]});
+  })})
 })
 app.post('/contact', (req, res) => {
 
