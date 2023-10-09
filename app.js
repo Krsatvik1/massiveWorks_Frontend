@@ -64,8 +64,11 @@ app.get('/about', (req, res) => {
   //send a get request to the api on localhost:1337 with token in header with fetch
   getData("about?populate=*").then((data)=>{
     getData("about?populate[SEO][populate]=*").then((data2)=>{
-      getData("about?populate[employees][populate]=*").then((data3)=>{ 
-        res.render('about', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/about', seo:data2.data, employees:data3.data});
+      getData("about?populate[employees][populate]=*").then((data3)=>{
+        getData("brands?populate=*").then((data4)=>{
+          res.render('about', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data, link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:'/about', seo:data2.data, employees:data3.data , brands:data4.data});
+        }) 
+        
       })})
     
   })
