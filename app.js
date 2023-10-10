@@ -84,7 +84,7 @@ app.get('/work', (req, res) => {
 })
 app.get('/work/:slug', (req, res) => {
   let strapiURLTO = 'works?filters[slug][$eq]='+req.params.slug
-  getData(strapiURLTO+'&populate[Assets][populate]=*').then((data)=>{
+  getData(strapiURLTO+'&populate[Assets][populate][image1][populate]=*&populate[Assets][populate][image2][populate]=*&populate[Assets][populate][imageBanner][populate]=*&populate[Assets][populate][videoBanner][populate]=*').then((data)=>{
     getData(strapiURLTO+'&populate[SEO][populate]=*').then((data2)=>{
     res.render('work-detail', {rescode: req.flash('resCode'), resmessage:req.flash('resMessage'), data: data.data[0], link: process.env.STRAPI_LINK, baseURL:process.env.SERVER_URL, pageURL:"/work/"+req.params.slug, seo:data2.data[0]});
   })})

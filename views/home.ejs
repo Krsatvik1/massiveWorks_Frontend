@@ -1,15 +1,15 @@
 <%- include('partials/header',{head:seo.attributes.SEO,link:link,baseURL:baseURL,pageURL:pageURL}) %> <%- include('partials/nav') %>
     <header
-      class="snap-normal flex md:block snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto h-screen md:pt-[180px]">
+      class="md:snap-normal flex md:block md:snap-center 2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto h-screen md:pt-[180px]">
       <img src="/public/img/MASSIVE_WORKS.svg" alt="Massive Work" class="w-full" />
     </header>
     <description-a
-      class="snap-normal 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto h-screen snap-center md:px-0 px-5 content-center grid md:grid-cols-2 grid-cols-1">
+      class="md:snap-normal 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto h-screen md:snap-center md:px-0 px-5 content-center grid md:grid-cols-2 grid-cols-1">
       <p class="font-instrument text-white mb-[34px] md:mb-0 text-base md:text-2xl max-w-[80%]">
         <%= data.attributes.HomePara1  %>
       </p>
     </description-a>
-    <established-a class="text-center snap-normal snap-center bg-white h-screen">
+    <established-a class="text-center md:snap-normal md:snap-center bg-white h-screen">
       <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
         <div class="relative h-full md:px-16 px-5 flex flex-col justify-center">
           <div id="borderTop" class="absolute origin-top top-0 left-0 w-full h-1/2 bg-black overflow-hidden">
@@ -33,7 +33,7 @@
     </established-a>
     <div class="bg-white">
       <quotes-white
-        class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-center snap-normal text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-white md:justify-between flex-col md:flex-row text-black min-h-screen flex py-40 md:py-80">
+        class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto md:snap-center md:snap-normal text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-white md:justify-between flex-col md:flex-row text-black min-h-screen flex py-40 md:py-80">
         <div class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0">
           <p class="font-instrument text-3xl md:text-[4rem] leading-[85%] lg:text-[8rem] mb-1 md:mb-[14px]">
             We
@@ -47,7 +47,7 @@
       </quotes-white>
     </div>
     <quotes-black
-      class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-black md:justify-between flex-col md:flex-row text-white min-h-screen flex py-40 md:py-80">
+      class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto md:snap-normal md:snap-center text-4xl md:text-[6rem] lg:text-[10rem] leading-[85%] px-5 bg-black md:justify-between flex-col md:flex-row text-white min-h-screen flex py-40 md:py-80">
       <div class="flex flex-col justify-center order-2 md:order-1 flex-grow md:flex-grow-0">
         <p class="font-instrument text-4xl md:text-[6rem] leading-[85%] lg:text-[10rem] mb-1 md:mb-[14px]">
           With
@@ -59,7 +59,7 @@
         <p class="font-instrument text-base md:text-2xl">how do we do it?</p>
       </div>
     </quotes-black>
-    <work-title class="text-center snap-normal snap-center bg-white h-screen">
+    <work-title class="text-center md:snap-normal md:snap-center bg-white h-screen">
       <div class="sticky top-0 h-screen bg-opacity-0 bg-white">
         <div class="relative h-full md:px-16 px-5 flex flex-col justify-center text-black">
           <div id="borderTop-b" class="absolute pt-20 origin-top top-0 left-0 w-full h-1/2 bg-white overflow-hidden">
@@ -112,7 +112,7 @@
     </div>
     <div class="bg-white py-40 md:px-0 px-5">
       <a id="viewmore" href="/work"
-        class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto snap-normal snap-center flex group  justify-center">
+        class="md:px-0 2xl:max-w-[1236px] xl:mx-w-[1080px] lg:max-w-[824px] md:max-w-[768px] sm:max-w-[640px] max-w-full mx-auto md:snap-normal md:snap-center flex group  justify-center">
         <div id="viewChild1"
           class="h-9 md:h-40 group-hover:-mr-5 flex md:mt-[0.15rem] place-content-center transition-all duration-1000">
           <img class="block w-full" src="/public/img/VIEW.svg">
