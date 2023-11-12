@@ -27,7 +27,9 @@ window.addEventListener("resize", () => {
 const nav = document.querySelector("nav");
 let lastScroll = 0;
 document.addEventListener("scroll", () => {
-  let { scrollTop } = document.documentElement;
+  let {
+    scrollTop
+  } = document.documentElement;
   if (scrollTop > lastScroll) {
     nav.style.top = "-100%";
   } else {
@@ -36,101 +38,73 @@ document.addEventListener("scroll", () => {
   lastScroll = scrollTop;
 });
 
+
 if (window.location.pathname == "/") {
-  const el = document.querySelector("established-a");
-  let borderTop = document.getElementById("borderTop");
-  let borderBottom = document.getElementById("borderBottom");
-  let borderBottomHeight = borderBottom.getBoundingClientRect().height;
-  const el_b = document.querySelector("work-title");
-  let borderTop_b = document.getElementById("borderTop-b");
-  let borderBottom_b = document.getElementById("borderBottom-b");
-  let borderBottomHeight_b = borderBottom_b.getBoundingClientRect().height;
+  const scrollReveal = document.querySelectorAll(".scrollReveal");
   document.addEventListener("scroll", () => {
-    document.querySelector("work-title > div").style.zIndex = null;
-    let topHead = document.getElementById("topHead");
-    let bottomHead = document.getElementById("bottomHead");
-    let topHead_b = document.getElementById("topHead-b");
-    let bottomHead_b = document.getElementById("bottomHead-b");
-    let bottom_b = el_b.getBoundingClientRect().bottom;
-    let height_b = el_b.getBoundingClientRect().height;
-    let { bottom, height } = el.getBoundingClientRect();
-    if (bottom <= height && bottom >= 0) {
-      let distance = height - bottom;
-      let scaleX = 1 - distance / height;
-      borderTop.style.transform = `scaleY(${scaleX})`;
-      borderBottom.style.transform = `scaleY(${scaleX})`;
-      document.body.style.background = "white";
-      document.querySelector("established-a > div").style.zIndex = null;
-      document.querySelector("#estd").style.transform=`scaleY(${1 / scaleX})  translateY(-${
-        distance / 4
-      }px)`;
-      topHead.style.transform = `scaleY(${1 / scaleX}) translateY(${
-        distance / 4
-      }px)`;
-      bottomHead.style.transform = `scaleY(${1 / scaleX}) translateY(-${
-        distance / 4
-      }px)`;
-    } else if (bottom < 0 && !(bottom_b <= height_b && bottom_b >= 0)) {
-      document.body.style.background = "black";
-      borderTop.style.transform = `scaleY(0)`;
-      borderBottom.style.transform = `scaleY(0)`;
-      topHead.style.transform = `scaleY(1)`;
-      bottomHead.style.transform = `scaleY(1)`;
-      document.querySelector("established-a > div").style.zIndex = "-1";
-    } else if (!(bottom_b <= height_b && bottom_b >= 0)) {
-      document.body.style.background = "black";
-      topHead.style.transform = `scaleY(1)`;
-      bottomHead.style.transform = `scaleY(1)`;
-      borderTop.style.transform = `scaleY(1)`;
-      borderBottom.style.transform = `scaleY(1)`;
-    }
-    if (bottom_b <= height_b && bottom_b >= 0) {
-      let distance_b = height_b - bottom_b;
-      let scaleX_b = 1 - distance_b / height_b;
-      borderTop_b.style.transform = `scaleY(${scaleX_b})`;
-      borderBottom_b.style.transform = `scaleY(${scaleX_b})`;
-      document.body.style.background = "black";
-      document.querySelector("#take1").style.transform=`scaleY(${1 / scaleX_b})  translateY(-${
-        distance_b / 4
-      }px)`;
-      document.querySelector("#take2").style.transform=`scaleY(${1 / scaleX_b})  translateY(-${
-        distance_b / 4
-      }px)`;
-      document.querySelector("#belive").style.transform=`scaleY(${1 / scaleX_b})  translateY(-${
-        distance_b / 4
-      }px)`;
-      document.querySelector("work-title > div").style.zIndex = '5';
-      topHead_b.style.transform = `scaleY(${1 / scaleX_b}) translateY(${
-        distance_b / 4
-      }px)`;
-      bottomHead_b.style.transform = `scaleY(${1 / scaleX_b}) translateY(-${
-        distance_b / 4
-      }px)`;
-    } else if (bottom_b < 0 && !(bottom <= height && bottom >= 0)) {
-      document.body.style.background = "black";
-      borderTop_b.style.transform = `scaleY(0)`;
-      borderBottom_b.style.transform = `scaleY(0)`;
-      topHead_b.style.transform = `scaleY(1)`;
-      bottomHead_b.style.transform = `scaleY(1)`;
-      document.querySelector("work-title > div").style.zIndex = "-1";
-    } else if (!(bottom <= height && bottom >= 0)){
-      document.body.style.background = "black";
-      topHead_b.style.transform = `scaleY(1)`;
-      bottomHead_b.style.transform = `scaleY(1)`;
-      borderTop_b.style.transform = `scaleY(1)`;
-      borderBottom_b.style.transform = `scaleY(1)`;
-    }
-  });
-  //target nav element and scroll it up when page is scrolling down and send it up and when page is scrolling up bring it down
-  // Path: public\js\index.js
+    scrollReveal.forEach((element) => {
+        let boundTop = element.getBoundingClientRect().top;
+        let heightSticky = element.querySelector(".sticky").offsetHeight;
+        let bottomSticky = element.querySelector(".sticky").getBoundingClientRect().bottom;
+        let borderBottom = element.querySelector(".borderBottom");
+        let borderTop = element.querySelector(".borderTop");
+        let topHead = element.querySelector(".topHead");
+        let bottomHead = element.querySelector(".bottomHead");
+        if (boundTop <= 0 && boundTop + bottomSticky >= 0) {
+          let distance = -boundTop
+          let scaleX = 1 - distance / heightSticky;
+          console.log("boundTop", boundTop);
+          console.log("bottomSticky", bottomSticky);
+          console.log("distance", distance);
+          console.log("scaleX", scaleX);
+          console.log("heightSticky", heightSticky, "\n \n \n \n");
+          borderTop.style.transform = `scaleY(${scaleX})`;
+          borderBottom.style.transform = `scaleY(${scaleX})`;
+          topHead.style.transform = `scaleY(${1 / scaleX}) translateY(${distance / 4}px)`;
+          bottomHead.style.transform = `scaleY(${1 / scaleX}) translateY(-${distance / 4}px)`;
+          element.querySelector(".sticky").style.zIndex = "5";
+          element.querySelectorAll(".support").forEach((sup) => {
+            sup.style.transform = `scaleY(${1 / scaleX}) translateY(-${distance / 4}px)`;
+          })
+        }else if (boundTop > 0) {
+          borderTop.style.transform = `scaleY(1)`;
+          borderBottom.style.transform = `scaleY(1)`;
+          topHead.style.transform = `scaleY(1) translateY(0px)`;
+          bottomHead.style.transform = `scaleY(1) translateY(0px)`;
+          element.querySelector(".sticky").style.zIndex = "5";
+          element.querySelectorAll(".support").forEach((sup) => {
+            sup.style.transform = `scaleY(1) translateY(0px)`;
+          })
+        }else {
+          borderTop.style.transform = `scaleY(0)`;
+          borderBottom.style.transform = `scaleY(0)`;
+          topHead.style.transform = `scaleY(1) translateY(0px)`;
+          bottomHead.style.transform = `scaleY(1) translateY(0px)`;
+          element.querySelector(".sticky").style.zIndex = "-5";
+          element.querySelectorAll(".support").forEach((sup) => {
+            sup.style.transform = `scaleY(1) translateY(0px)`;
+          })
+        }
+      })
+    });
+
+
+
+
 
   const viewmore = document.querySelector("#viewmore");
   const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
-    const { top, left, bottom, right } = el.getBoundingClientRect();
-    const { innerHeight, innerWidth } = window;
-    return partiallyVisible
-      ? (top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)
-      : top >= 0 && bottom <= innerHeight;
+    const {
+      top,
+      left,
+      bottom,
+      right
+    } = el.getBoundingClientRect();
+    const {
+      innerHeight,
+      innerWidth
+    } = window;
+    return partiallyVisible ? top > 0 && top < innerHeight || bottom > 0 && bottom < innerHeight : top >= 0 && bottom <= innerHeight;
   };
   document.addEventListener("scroll", () => {
     if (elementIsVisibleInViewport(viewmore) && window.innerWidth < 768) {
