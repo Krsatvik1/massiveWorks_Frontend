@@ -1973,14 +1973,6 @@ select {
   height: 100vh;
 }
 
-.h-\[200vh\] {
-  height: 200vh;
-}
-
-.h-\[\] {
-  height: ;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -2021,15 +2013,6 @@ select {
   width: 100vw;
 }
 
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.w-2 {
-  width: 0.5rem;
-}
-
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -2048,11 +2031,6 @@ select {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-fit {
-  max-width: -moz-fit-content;
-  max-width: fit-content;
 }
 
 .flex-shrink {
@@ -3379,6 +3357,14 @@ select {
   padding-top: 10rem;
 }
 
+.pl-\[300px\] {
+  padding-left: 300px;
+}
+
+.pl-\[350px\] {
+  padding-left: 350px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -3485,6 +3471,10 @@ select {
 
 .text-\[7rem\] {
   font-size: 7rem;
+}
+
+.text-\[8rem\] {
+  font-size: 8rem;
 }
 
 .text-base {
@@ -5923,6 +5913,10 @@ select {
     font-size: 14rem;
   }
 
+  .md\:text-\[20rem\] {
+    font-size: 20rem;
+  }
+
   .md\:text-\[31\.25rem\] {
     font-size: 31.25rem;
   }
@@ -5991,6 +5985,10 @@ select {
 @media (min-width: 1280px) {
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

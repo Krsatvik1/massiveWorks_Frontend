@@ -39,7 +39,7 @@ document.addEventListener("scroll", () => {
 });
 
 
-if (window.location.pathname == "/") {
+if (window.location.pathname == "/" || window.location.pathname == "/about") {
   const scrollReveal = document.querySelectorAll(".scrollReveal");
   document.addEventListener("scroll", () => {
     scrollReveal.forEach((element) => {

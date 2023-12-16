@@ -8,7 +8,7 @@
             </div>
         </header>
         
-        <work-all class="2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto grid grid-cols-2 md::grid-cols-3 xl:grid-cols-4 content-center ">
+        <work-all class="2xl:max-w-[1236px] xl:mx-w-[1080px] md:px-0 lg:max-w-[824px] md:max-w-[768px] px-5 sm:max-w-[640px] max-w-full mx-auto grid grid-cols-2 md::grid-cols-3 xl:grid-cols-3 content-center ">
             <% worksData.data.forEach((workData , key)=>{ console.log(worksData.data[key])%>
             <div class="overflow-hidden">
                 <a href="/work/<%= worksData.data[key].attributes.slug %>" class="block h-full aspect-square bg-cover bg-center hover:scale-125 transition-all duration-300" style="background-image: url('<%=link%><%= worksData.data[key].attributes.DisplayWorkTile.data.attributes.url %>');" role="img" aria-label="<%= worksData.data[key].attributes.DisplayWorkTile.data.attributes.alternativeText %>">
